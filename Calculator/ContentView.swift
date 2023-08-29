@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var totalNumber: String = "0"
+    
     var body: some View {
         ZStack{
             Color.black.ignoresSafeArea()
@@ -17,7 +20,7 @@ struct ContentView: View {
                 
                 HStack{
                     Spacer()
-                    Text("331,460")
+                    Text(totalNumber)
                         .padding()
                         .font(.system(size: 73))
                         .foregroundColor(.white)
@@ -25,28 +28,28 @@ struct ContentView: View {
                 
                 HStack {
                     Button{
-                        
+                        totalNumber = "0"
                     } label: {
                         Text("C")
                             .frame(width: 80, height:80)
-                            .background(.gray)
+                            .background(Color("SymbolButton"))
                             .cornerRadius(40)
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
                             .font(.system(size: 33))
                     }
                     
                     
                     Text("+/-")
                         .frame(width: 80, height:80)
-                        .background(.gray)
+                        .background(Color("SymbolButton"))
                         .cornerRadius(40)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .font(.system(size: 33))
                     Text("%")
                         .frame(width: 80, height:80)
-                        .background(.gray)
+                        .background(Color("SymbolButton"))
                         .cornerRadius(40)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .font(.system(size: 33))
                     Text("÷")
                         .frame(width: 80, height:80)
@@ -58,11 +61,15 @@ struct ContentView: View {
                 
                 HStack {
                     Button{
-                        
+                        if totalNumber == "0" {
+                            totalNumber = "7"
+                        } else {
+                            totalNumber += "7"
+                        }
                     } label: {
                         Text("7")
                             .frame(width: 80, height:80)
-                            .background(.gray)
+                            .background(Color("NumberButton"))
                             .cornerRadius(40)
                             .foregroundColor(.white)
                             .font(.system(size: 33))
@@ -71,13 +78,13 @@ struct ContentView: View {
                     
                     Text("8")
                         .frame(width: 80, height:80)
-                        .background(.gray)
+                        .background(Color("NumberButton"))
                         .cornerRadius(40)
                         .foregroundColor(.white)
                         .font(.system(size: 33))
                     Text("9")
                         .frame(width: 80, height:80)
-                        .background(.gray)
+                        .background(Color("NumberButton"))
                         .cornerRadius(40)
                         .foregroundColor(.white)
                         .font(.system(size: 33))
@@ -91,19 +98,19 @@ struct ContentView: View {
                 HStack {
                     Text("4")
                         .frame(width: 80, height:80)
-                        .background(.gray)
+                        .background(Color("NumberButton"))
                         .cornerRadius(40)
                         .foregroundColor(.white)
                         .font(.system(size: 33))
                     Text("5")
                         .frame(width: 80, height:80)
-                        .background(.gray)
+                        .background(Color("NumberButton"))
                         .cornerRadius(40)
                         .foregroundColor(.white)
                         .font(.system(size: 33))
                     Text("6")
                         .frame(width: 80, height:80)
-                        .background(.gray)
+                        .background(Color("NumberButton"))
                         .cornerRadius(40)
                         .foregroundColor(.white)
                         .font(.system(size: 33))
@@ -117,19 +124,19 @@ struct ContentView: View {
                 HStack {
                     Text("1")
                         .frame(width: 80, height:80)
-                        .background(.gray)
+                        .background(Color("NumberButton"))
                         .cornerRadius(40)
                         .foregroundColor(.white)
                         .font(.system(size: 33))
                     Text("2")
                         .frame(width: 80, height:80)
-                        .background(.gray)
+                        .background(Color("NumberButton"))
                         .cornerRadius(40)
                         .foregroundColor(.white)
                         .font(.system(size: 33))
                     Text("3")
                         .frame(width: 80, height:80)
-                        .background(.gray)
+                        .background(Color("NumberButton"))
                         .cornerRadius(40)
                         .foregroundColor(.white)
                         .font(.system(size: 33))
@@ -143,18 +150,18 @@ struct ContentView: View {
                 HStack {
                     Text("0")
                         .frame(width: 80, height:80)
-                        .background(.gray)
+                        .background(Color("NumberButton"))
                         .cornerRadius(40)
                         .foregroundColor(.white)
                         .font(.system(size: 33))
                     Text("0")
                         .frame(width: 80, height:80)
-                        .background(.gray)
+                        .background(Color("NumberButton"))
                         .cornerRadius(40)
                         .foregroundColor(.white)
                         .font(.system(size: 33))
                     Text(".").frame(width: 80, height:80)
-                        .background(.gray)
+                        .background(Color("NumberButton"))
                         .cornerRadius(40)
                         .foregroundColor(.white)
                         .font(.system(size: 33))
