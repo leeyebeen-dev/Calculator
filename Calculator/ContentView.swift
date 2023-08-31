@@ -158,11 +158,11 @@ struct ContentView: View {
                                     else if row == .equal {
                                         
                                         if operatorType == .add{
-                                            totalNumber = String((Int(totalNumber) ?? 0) + tempNumber)
+                                            totalNumber = String(tempNumber + (Int(totalNumber) ?? 0))
                                         } else if operatorType == .multiply{
-                                            totalNumber = String((Int(totalNumber) ?? 0) * tempNumber)
+                                            totalNumber = String(tempNumber * (Int(totalNumber) ?? 0))
                                         } else if operatorType == .subtract{
-                                            totalNumber = String((Int(totalNumber) ?? 0) - tempNumber)
+                                            totalNumber = String(tempNumber - (Int(totalNumber) ?? 0))
                                         }
                                     }
                                     else {
@@ -170,7 +170,9 @@ struct ContentView: View {
                                     }
                                 }
                             } label: {
+                                
                                 Text(row.ButtonDisplayName)
+                                    .bold()
                                     .frame(width: row ==
                                         .some(.zero) ? 165 : 80, height:80)
                                     .background(row.backgroundColor)
