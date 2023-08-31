@@ -81,6 +81,9 @@ struct ContentView: View {
     
     @State private var totalNumber: String = "0"
     
+    @State var tempNumber: Int = 0
+    @State var operatorType: ButtonType = .clear
+    
     private let buttonData: [[ButtonType]] = [
         [.clear,.opposite,.percent,.divide],
         [.seventh, .eighth, .nineth, .multiply],
@@ -114,13 +117,62 @@ struct ContentView: View {
                             
                             Button{
                                 if totalNumber == "0" {
-                                    totalNumber = row.ButtonDisplayName
+                                    
+                                    if row == .clear {
+                                        totalNumber = "0"
+                                    }
+                                    else if row == .add ||
+                                            row == .subtract ||
+                                            row == .multiply ||
+                                            row == .divide {
+                                        totalNumber = "Error"
+                                    }
+                                    else {
+                                        totalNumber = row.ButtonDisplayName
+                                    }
                                 } else {
-                                    totalNumber += row.ButtonDisplayName
+                                    if row == .clear {
+                                        totalNumber = "0"
+                                    } else if row == .add {
+                                        // 숫자 저장
+                                        tempNumber = Int(totalNumber) ?? 0
+                                        // 더하기
+                                        operatorType = .add
+                                        // 남은 숫자 초기화
+                                        totalNumber = "0"
+                                    } else if row == .multiply {
+                                        // 숫자 저장
+                                        tempNumber = Int(totalNumber) ?? 0
+                                        // 곱하기
+                                        operatorType = .multiply
+                                        // 남은 숫자 초기화
+                                        totalNumber = "0"
+                                    } else if row == .subtract {
+                                        // 숫자 저장
+                                        tempNumber = Int(totalNumber) ?? 0
+                                        // 곱하기
+                                        operatorType = .subtract
+                                        // 남은 숫자 초기화
+                                        totalNumber = "0"
+                                    }
+                                    else if row == .equal {
+                                        
+                                        if operatorType == .add{
+                                            totalNumber = String((Int(totalNumber) ?? 0) + tempNumber)
+                                        } else if operatorType == .multiply{
+                                            totalNumber = String((Int(totalNumber) ?? 0) * tempNumber)
+                                        } else if operatorType == .subtract{
+                                            totalNumber = String((Int(totalNumber) ?? 0) - tempNumber)
+                                        }
+                                    }
+                                    else {
+                                        totalNumber += row.ButtonDisplayName
+                                    }
                                 }
                             } label: {
                                 Text(row.ButtonDisplayName)
-                                    .frame(width: 80, height:80)
+                                    .frame(width: row ==
+                                        .some(.zero) ? 165 : 80, height:80)
                                     .background(row.backgroundColor)
                                     .cornerRadius(40)
                                     .foregroundColor(row.foregroundColor)
